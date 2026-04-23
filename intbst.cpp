@@ -230,17 +230,25 @@ int IntBST::getSuccessor(int value) const{
 // returns true if the node exist and was deleted or false if the node does not exist
 bool IntBST::remove(int value){
     Node* n = getNodeFor(value, root);
+    if (!n)
+        return false;
+
+    removeHelper(n); 
+    return true;
+
+    
+}
+
+void IntBST::removeHelper(Node* n){
     Node* parent = NULL;
     Node* curr = root;
-    Node* s = getSuccessorNode(value);
+    Node* s = getSuccessorNode(n->info);
 
-    if (!n)
-        return false; 
-
-    // Delete recursion case (two children)
+    // 2 parent condition
     if(n->left && n->right){
         n->info = s->info;
-        return remove(s->info);  
+        removeHelper(s);  
+        return;
     }
 
     // Get child
@@ -272,5 +280,4 @@ bool IntBST::remove(int value){
         child->parent = parent;
 
     delete n;
-    return true;
 }

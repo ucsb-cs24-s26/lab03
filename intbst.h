@@ -9,6 +9,7 @@
 using namespace std;
 
 class IntBST {
+    struct Node;
 
  public:
     // ctor, dtor, insert and one print method already done in intbst.cpp:
@@ -27,7 +28,10 @@ class IntBST {
     // THESE ARE HARDER! DO THESE LAST
     int getPredecessor(int value) const;       // returns the predecessor value of the given value or 0 if there is none
     int getSuccessor(int value) const;         // returns the successor value of the given value or 0 if there is none
-    bool remove(int value);                    // deletes the Node containing the given value from the tree
+    bool remove(int value);
+    void removeHelper(Node *n);
+
+
 
  private:
 
@@ -50,6 +54,7 @@ class IntBST {
     void printPostOrder(Node *n) const;
     int sum(Node *n) const;
     int count(Node *n) const;
+
 
     // these should be used by getPredecessor and getSuccessor, and ONE of them should be used by remove
     Node* getSuccessorNode(int value) const;   // returns the Node containing the successor of the given value
