@@ -198,9 +198,10 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const{
         return NULL; 
     if (n->right != NULL){
         Node* s = n->right;
-        while (s->left != NULL)
+        while (s->left != NULL){
             s = s->left;
             return s;
+        }
     }
     Node* succ = NULL;
     Node* curr = root;
